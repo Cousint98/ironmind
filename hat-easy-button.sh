@@ -144,14 +144,14 @@ echo ""
 echo "===== PHASE 6: StatusDetection Service ====="
 echo "[6/7] Setting up StatusDetection service..."
 mkdir -p "$ACTUAL_HOME/bin/PowerManagementHAT"
-wget -q https://raw.githubusercontent.com/waveshare/Power-Management-HAT/master/StatusDetection.py \
+wget -q https://raw.githubusercontent.com/Cousint98/ironmind/main/StatusDetection.py \
     -O "$ACTUAL_HOME/bin/PowerManagementHAT/StatusDetection.py"
 chown -R "$ACTUAL_USER:$ACTUAL_USER" "$ACTUAL_HOME/bin/PowerManagementHAT"
 
 cat > /etc/systemd/system/power-management-hat.service << EOF
 [Unit]
 Description=Power Management HAT Status Detection
-After=multi-user.target
+After=basic.target
 
 [Service]
 ExecStart=/usr/bin/python3 $ACTUAL_HOME/bin/PowerManagementHAT/StatusDetection.py
